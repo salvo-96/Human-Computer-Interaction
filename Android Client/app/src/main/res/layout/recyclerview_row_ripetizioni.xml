@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/row_ripetizioni"
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="viewStart"
+        android:textColor="#3F51B5"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_disdici"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="59dp"
+        android:layout_height="wrap_content"
+        android:text="@string/disdici"
+        android:textAlignment="center"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_completata"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/completata"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

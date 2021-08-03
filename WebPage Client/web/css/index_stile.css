@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to left, lightgrey, #ffc15c);
+}
+
+nav {
+    background: rgba(28, 30, 23, 0.86);
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    height: auto;
+}
+
+nav > div {
+    display: block;
+}
+
+nav p {
+    margin-top: 0;
+    margin-left: 10px;
+    margin-bottom: 0;
+    font-size: 30pt;
+    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+    vertical-align: center;
+    background: linear-gradient(to right, lightgrey, #ffc15c);
+    background-size: cover;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+#nav-left {
+    width: 35%;
+}
+
+#nav-right {
+    width: 60%;
+    float: right;
+
+}
+
+table {
+    font-size: 10pt;
+}
+
+fieldset {
+    margin: 10px;
+    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+
+    font-size: 18pt;
+}
+
+label {
+    font-size: 12pt;
+}
+
+legend {
+    color: #ff8c00; /* fix for not webkit browsers */
+    background: linear-gradient(to left, lightgrey, #ffc15c);
+    background-size: cover;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+.nav-button {
+
+    border: none;
+    font-size: 20pt;
+    width: auto;
+    float: right;
+    margin: 7px;
+    border-radius: 10px;
+    background: linear-gradient(to right, lightgrey, #ffc15c);
+    background-size: cover;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+
+.center {
+    float: left;
+    border-radius: 10px;
+    width: 97%;
+    margin: 10px;
+    /*position: fixed;
+    overflow-y: scroll;*/
+}
+
+.center > div {
+    background: rgba(28, 30, 23, 0.86);
+    color: white;
+    border-radius: 10px;
+}
+
+.center-left {
+    float: left;
+    margin: 10px;
+    width: 450px;
+}
+
+.center-right {
+    float: right;
+    margin: 10px;
+    width: 365px;
+}
+
+.center-center {
+    float: left;
+    display: block;
+    width: 450px;
+    margin: 10px;
+}
+
+.center-center table {
+    border-spacing: 15px;
+}
+
+.center-center fieldset {
+    overflow-y: scroll;
+    height: 147px;
+}
+
+.ruolo {
+    color: lightgreen;
+}
+
+.error {
+    color: red;
+}

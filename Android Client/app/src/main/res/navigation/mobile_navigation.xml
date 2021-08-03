@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_corsi">
+
+    <fragment
+        android:id="@+id/nav_corsi"
+        android:name="com.example.progetto_ium_tweb.ui.corsi.CorsiFragment"
+        android:label="@string/menu_corsi"
+        tools:layout="@layout/fragment_corsi" />
+
+    <fragment
+        android:id="@+id/nav_mie_prenotazioni"
+        android:name="com.example.progetto_ium_tweb.ui.mie_ripetizioni.MieRipetizioniFragment"
+        android:label="@string/menu_mie_ripetizioni"
+        tools:layout="@layout/fragment_mie_ripetizioni" />
+
+    <fragment
+        android:id="@+id/nav_prenota_ripetizione"
+        android:name="com.example.progetto_ium_tweb.ui.prenota_ripetizione.PrenotaRipetizioneFragment"
+        android:label="@string/menu_prenota_nuova_ripetizione"
+        tools:layout="@layout/fragment_prenota_ripetizione" />
+
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.progetto_ium_tweb.ui.logout.LogoutFragment"
+        android:label="Logout"
+        tools:layout="@layout/fragment_logout" />
+
+
+</navigation>

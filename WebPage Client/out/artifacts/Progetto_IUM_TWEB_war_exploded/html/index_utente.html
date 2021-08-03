@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Index Prenotazioni</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/index_stile.css">
+</head>
+<body>
+<div id="section_output">
+    <nav>
+        <div id="nav-right">
+            <button class="nav-button" type="submit" v-on:click="show_elenco">Bacheca</button>
+            <button class="nav-button" type="button" v-on:click="show_ripetizioni">Prenota</button>
+            <button class="nav-button" type="button" v-on:click="show_corsi">Corsi</button>
+        </div>
+        <div id="nav-left">
+            <p>Sito Ripetizioni</p>
+        </div>
+    </nav>
+    <div class="center">
+        <div class="center-left">
+            <fieldset v-show="sezione === 'corsi'">
+                <legend>Elenco Corsi</legend>
+                <div v-show="sezione === 'corsi'"></div>
+                <div><label>Corsi di cui il sito offre la possibilit&agrave di prendere ripetizioni.</label></div>
+                <div><label>Titolo Corso:</label></div>
+                <div><label v-for="corso in corsi">{{corso.titolo}} </br></label></div>
+            </fieldset>
+            <fieldset v-show="sezione === 'ripetizioni'">
+                <legend>Elenco Ripetizioni</legend>
+                <div v-show="sezione === 'ripetizioni'"></div>
+
+                <div v-show="sezione === 'ripetizioni'"><label>Seleziona il corso:</label></div>
+
+                <div v-show="sezione === 'ripetizioni'"><select @change="filter_prof" v-model="titolo_corso">
+                    <option v-for="corso in corsi" :value="corso.titolo">
+                        {{corso.titolo}}
+                    </option>
+                </select></div>
+
+                <div v-show="sezione === 'ripetizioni' && select_prof === true"><label>Seleziona il
+                    professore:</label></div>
+
+                <div v-show="sezione === 'ripetizioni' && select_prof === true"><select @change="show_giorno"
+                                                                                              v-model="id_professore">
+                    <option v-for="professore in professori" :value="professore.id">
+                        {{professore.nome}} {{professore.cognome}}
+                    </option>
+                </select></div>
+
+                <div v-show="sezione === 'ripetizioni' && select_prof === true && select_giorno === true">
+                    <label>Seleziona il giorno:</label></div>
+
+                <div v-show="sezione === 'ripetizioni' && select_prof === true && select_giorno === true">
+                    <select @change="show_button" v-model="giorno">
+                        <option value="lunedi">Luned&igrave</option>
+                        <option value="martedi">Marted&igrave</option>
+                        <option value="mercoledi">Mercoled&igrave</option>
+                        <option value="giovedi">Gioved&igrave</option>
+                        <option value="venerdi">Venerd&igrave</option>
+                    </select></div>
+
+                <div v-show="button === true" v-show="sezione === 'ripetizioni'" v-show="select_prof === true"
+                     v-show="select_giorno === true">
+                    <button type="button" v-on:click="get_elenco">Cerca</button>
+                </div>
+
+                <div v-show="elenco === true" v-show="button === true" v-show="sezione === 'ripetizioni'"
+                     v-show="select_prof === true" v-show="select_giorno === true">
+                    <select v-model="ora" @change="show_prenota">
+                        <option v-for="ripetizione in ripetizioni" :value="ripetizione.ora">{{ripetizione.ora}}</option>
+                    </select></div>
+
+                <div>
+                    <button v-show="button_prenota === true" class="btn btn-warning" type="button" v-on:click="prenota">
+                        Prenota
+                    </button>
+                </div>
+                <div v-show="message !== null"><label class="error">{{message}}</label></div>
+            </fieldset>
+        </div>
+        <div class="center-center">
+                <fieldset v-show="sezione === 'elenco'">
+                    <legend>Ripetizioni in corso:</legend>
+                    <div>
+                        <table>
+                            <tr>
+                                <th>Corso</th>
+                                <th>Professore</th>
+                                <th>Giorno</th>
+                                <th>Ora</th>
+                            </tr>
+                            <tr v-for="ripetizione in in_corso">
+                                <td>{{ripetizione.titolo_corso}}</td>
+                                <td>{{ripetizione.id_professore}}</td>
+                                <td>{{ripetizione.data}}</td>
+                                <td>{{ripetizione.ora}}</td>
+                                <td>
+                                    <button class="btn btn-warning" type="button"
+                                            v-on:click="disdici(ripetizione.data,ripetizione.ora)">Disdici
+                                    </button>
+                                    <button class="btn btn-warning" type="button"
+                                            v-on:click="completata(ripetizione.data,ripetizione.ora)">Completata
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+                <fieldset v-show="sezione === 'elenco'">
+                    <legend>Ripetizioni annullate:</legend>
+                    <div>
+                        <table>
+                            <tr>
+                                <th>Corso</th>
+                                <th>Professore</th>
+                                <th>Giorno</th>
+                                <th>Ora</th>
+                            </tr>
+                            <tr v-for=" ripetizione in annullate
+                            ">
+                                <td>{{ripetizione.titolo_corso}}</td>
+                                <td>{{ripetizione.id_professore}}</td>
+                                <td>{{ripetizione.data}}</td>
+                                <td>{{ripetizione.ora}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+                <fieldset v-show="sezione === 'elenco'">
+                    <legend>Ripetizioni completate:</legend>
+                    <div>
+                        <table>
+                            <tr>
+                                <th>Corso</th>
+                                <th>Professore</th>
+                                <th>Giorno</th>
+                                <th>Ora</th>
+                            </tr>
+                            <tr v-for="ripetizione in completate">
+                                <td>{{ripetizione.titolo_corso}}</td>
+                                <td>{{ripetizione.id_professore}}</td>
+                                <td>{{ripetizione.data}}</td>
+                                <td>{{ripetizione.ora}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+        </div>
+        <div class="center-right">
+            <fieldset>
+                <legend>Profilo</legend>
+                <div><label>E-mail: {{info_utente.mail}}</label></div>
+                <div><label>Nome: {{info_utente.nome}}</label></div>
+                <div><label>Cognome: {{info_utente.cognome}}</label></div>
+                <div class="ruolo"><label>Ruolo: {{info_utente.ruolo}}</label></div>
+                <div>
+                    <form method="post" action="/Progetto-IUM-TWEB/servlet_server">
+                        <input type="hidden" name="servlet" value="session">
+                        <button type="submit" name="submit" value="logout">Logout</button>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<script src="../js/script_utente.js" language="JavaScript"></script>
+</body>
+</html>

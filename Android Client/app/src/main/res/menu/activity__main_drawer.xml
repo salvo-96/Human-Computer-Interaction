@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_corsi"
+            android:icon="@drawable/ic_corsi"
+            android:title="Corsi" />
+
+    </group>
+
+
+        <item android:title="Servizi">
+            <menu>
+
+            <item
+                android:id="@+id/nav_prenota_ripetizione"
+                android:icon="@drawable/ic_add"
+                android:title="Prenota nuova Ripetizione" />
+
+            </menu>
+
+        </item>
+
+
+
+
+    <item android:title="Area Personale">
+        <menu>
+            <item
+                android:id="@+id/nav_mie_prenotazioni"
+                android:icon="@drawable/ic_ripetizioni"
+                android:title="Le mie ripetizioni" />
+
+        </menu>
+    </item>
+
+    <item android:title="Account">
+        <menu>
+
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Logout"
+                android:icon="@drawable/ic_logout"
+                />
+
+        </menu>
+    </item>
+
+</menu>
